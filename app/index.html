@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="subtierranean" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="subtierranean" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="subtierranean" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="subtierranean" class="no-js">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Subtierranean</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+  crossorigin="anonymous">
+  <link rel="stylesheet" href="app.css">
+</head>
+
+<body>
+
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+  <div class='container' ng-controller="SubtierController">
+    <div class='page-header'>
+      <h1>Subtierranean</h1>
+      <small>Pathfinder Society Roleplaying Guild Subtier Calculator</small>
+    </div>
+    <div class='row'>
+      <div class=' col-sm-12 col-md-8 col-md-offset-2'>
+        <form class='form-horizontal'>
+          <div class='form-group'>
+            <div>
+              <select class='form-control' ng-options="season.label for season in seasons" ng-model="season"></select>
+            </div>
+            <div>
+              <select class='form-control' ng-model="tier" ng-options="tier.label for tier in season.tiers"></select>
+            </div>
+            <div class=''>
+              <select class='form-control' ng-model="playerCount">
+                <option value='3'>Three Players + Iconic</option>
+                <option value='4'>Four Player</option>
+                <option value='5'>Five Players</option>
+                <option value='6'>Six Players</option>
+                <option value='7'>Seven Players</option>
+              </select>
+            </div>
+          </div>
+          <div class='form-group'>
+            <div class='panel panel-primary'>
+              <div class='panel-heading'>
+                Select the level of each character being played:
+              </div>
+              <div class='panel-body'>
+                <div ng-repeat="player in players" class='form-control'>
+                  <label for="playerlvl{{$id}}">Player {{$index+1}} Level </label>
+                  <select id="playerlvl{{id}}" ng-model="player.level" ng-options="level for level in $parent.tier.levels"></select>
+                </div>
+              </div>
+              <div class='panel-footer'>
+                <div class='row'>
+                  <div class='col-xs-12 col-sm-8'>
+                    <div class='btn btn-primary'>{{subtier()}}</div>
+                  </div>
+                  <div class='col-xs-12 col-sm-2'>
+                    <div class='btn btn-info'>Levels: <span class='badge'>{{totalLevels()}}</span></div>
+                  </div>
+                  <div class='col-xs-12 col-sm-2'>
+                    <div class='btn btn-success'>APL: <span class='badge'>{{apl() | number:2 }}</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    </form>
+  </div>
+  </div>
+  <footer class=footer>
+    <div class="container text-muted">
+    <div>Subtierranean: v<span app-version></span> &copy; 2016 <a href='mailto:oni@tetsujinlabs.com'>@tetsujinoni</a></div>
+    <div class="h6"><small>This utility uses trademarks and/or copyrights owned by Paizo Inc., which are used under Paizo's Community Use Policy.
+      We are expressly prohibited from charging you to use or access this content. This utility is not published, endorsed,
+      or specifically approved by Paizo Inc. For more information about Paizo's Community Use Policy, please visit <a href='http://paizo.com/communityuse/'>paizo.com/communityuse</a>.
+      For more information about Paizo Inc. and Paizo products, please visit <a href='http://paizo.com/'>paizo.com</a>.</small></div>
+    </div>
+  </footer>
+  </div>
+  </div>
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
+  <script src="app.js"></script>
+
+  <script src="components/version/version.js"></script>
+  <script src="components/version/version-directive.js"></script>
+  <script src="components/version/interpolate-filter.js"></script>
+  <script src="components/seasonfactory/seasonfactory.js"></script>
+  <script src="components/calculatorservice/calculatorservice.js"></script>
+  <script src="controllers/subtierController.js"></script>
+</body>
+
+</html>
