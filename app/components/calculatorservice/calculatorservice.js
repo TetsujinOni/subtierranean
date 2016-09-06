@@ -87,6 +87,7 @@
         },
         fiveLevelTierOld: function(min, max) {
             var choose = min + 1.5;
+            var maxChoose = max - 1.5;
             var lowSubtier = "Subtier " + min + "-" + (min + 1);
             var highSubtier = "Subtier " + (max - 1) + "-" + max;
             var chooseSubtier = "Choose " + lowSubtier + " or " + highSubtier;
@@ -104,14 +105,19 @@
                 if (total < count * choose) {
                     return lowSubtier;
                 }
-                if (total === count * choose) {
-                    return chooseSubtier;
-                }
-                if (total > count * (min + 2) && total < count * (max-2)) {
+
+
+                if ((total < count * maxChoose ) )  {
                     if (count < 6) {
                         return lowSubtier;
                     }
+                    return chooseSubtier;
                 }
+
+                if (total === count * maxChoose){
+                    return chooseSubtier;
+                }
+
                 if (allUnder) {
                     return chooseSubtier;
                 }

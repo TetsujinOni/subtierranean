@@ -18,7 +18,14 @@
 		it('should contain a Season 0-3 5-level-tier Calculator Factory',
 		inject(['calculatorservice', function(service){
 			expect(service.fiveLevelTierOld).not.toEqual(null)
-			var tier59 = service.fiveLevelTierOld(5,9);
+		}]));
+
+		describe("Five-Level-Tier Old computations", function(){
+			beforeEach(module('subtierranean'));
+			var tier59;
+			beforeEach(inject(['calculatorservice', function(service){
+					 tier59 = service.fiveLevelTierOld(5,9);
+			}]));
 
 			it('Should compute four players all mid APL properly', function(){
 				expect(tier59([ p(7), p(7), p(7), p(7)])).toEqual('Subtier 5-6');
@@ -39,8 +46,12 @@
 			it('Should compute that less than 7.5 rounds to low tier for old seasons for 5 players', function(){
 				expect(tier59([ p(8), p(8), p(8), p(7), p(6)])).toEqual('Subtier 5-6');
 			})
-			expect(tier59([ p(9), p(8), p(8), p(7), p(6)])).toEqual('Subtier 8-9');
-		}]));
+			it('Should compute that 9, 8, 8, 7, 6 is high tier. ', function(){
+				expect(tier59([ p(9), p(8), p(8), p(7), p(6)])).toEqual('Subtier 8-9');
+			})
+		}
+		);
+
 		
 		it('should contain a modern 5-level-tier Calculator Factory that works',
 		inject(['calculatorservice', function(service){
