@@ -5,4 +5,4 @@ angular.module('subtierranean.version', [
   'subtierranean.version.version-directive'
 ])
 
-.value('version', '1.3');
+.value('version', '1.4');

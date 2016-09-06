@@ -22,7 +22,8 @@
 			expect(tier59([ p(7), p(7), p(7), p(7)])).toEqual('Subtier 5-6');
 			expect(tier59([ p(7), p(7), p(7), p(7), p(7), p(7), p(7)])).toEqual('Choose Subtier 5-6 or Subtier 8-9');
 			expect(tier59([ p(8), p(9), p(8), p(9), p(7), p(7)])).toEqual('Subtier 8-9');
-									
+			// @theseldonplan reported on twitter
+			expect(tier59([ p(8), p(8), p(8), p(7), p(6)])).toEqual('Subtier 5-6');
 		}]));
 		
 		it('should contain a modern 5-level-tier Calculator Factory that works',

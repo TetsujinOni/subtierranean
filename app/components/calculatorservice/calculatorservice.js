@@ -100,13 +100,14 @@
                     total += lvl;
                     allUnder = allUnder && lvl < (max - 1);
                 }
+
                 if (total < count * choose) {
                     return lowSubtier;
                 }
                 if (total === count * choose) {
                     return chooseSubtier;
                 }
-                if (total === count * (min + 2)) {
+                if (total <= count * (max-1)) {
                     if (count < 6) {
                         return lowSubtier;
                     }
